@@ -1,0 +1,99 @@
+#! /bin/bash
+http="http://"
+export MAIN_DIALOG='
+	<window title="Penmode2 XSS"resizable="false" image-name="/opt/penmode/.icons/icon.png">
+    <vbox>
+    <pixmap>
+    <input file>/opt/penmode/.icons/cubi.png</input>
+	</pixmap>
+	<pixmap>
+    <input file>/opt/penmode/.icons/space.png</input>
+	</pixmap>
+    <frame Read target urls from a file>
+    <hbox>
+      <button>
+        <input file>/opt/penmode/.icons/add.png</input>
+        <width>30</width>
+        <variable>FILE_BROWSE</variable>
+        <action type="fileselect">txt</action>
+      </button>
+      <entry>
+        <variable>txt</variable>
+      </entry>
+   <button>
+        <label> XSS  </label>
+        <input file>/opt/penmode/.icons/xss.png</input>
+		<width>30</width>
+          <action>/opt/penmode/.moduli/terminal/xss1  &</action>
+        </button>
+            </hbox>
+      </frame>
+       <frame Enter target to audit>
+       <hbox>
+       <text>
+			<label> TARGET :</label>
+			</text>
+        <entry>
+			<default>'$http''$TARGET'</default>
+			<variable>target</variable>
+		</entry>
+		<button>
+        <label> XSS  </label>
+        <input file>/opt/penmode/.icons/xss.png</input>
+		<width>30</width>
+          <action>/opt/penmode/.moduli/terminal/xss2 &</action>
+        </button>
+       </hbox>
+       </frame>
+       <frame Avanzate XSS>
+       <expander expander="false" use-underline="false">
+       <vbox>
+    <hbox>
+      <button>
+        <input file>/opt/penmode/.icons/add.png</input>
+        <width>30</width>
+        <variable>FILE_BROWSE</variable>
+        <action type="fileselect">txta</action>
+      </button>
+      <entry>
+        <variable>txta</variable>
+      </entry>
+      <text>
+				<label>TIMEOUT:</label>
+	   </text>
+       <entry>
+			<default>20</default>
+			<variable>timeout</variable>
+		</entry>
+      </hbox>
+      <hbox>
+      <text>
+				<label>THREADS:</label>
+	   </text>
+       <entry>
+			<default>5</default>
+			<variable>threads</variable>
+		</entry>
+		
+		<text>
+				<label>DELAY:</label>
+	   </text>
+       <entry>
+			<default>10</default>
+			<variable>delay</variable>
+		</entry>
+        <button>
+        <label> XSS  </label>
+        <input file>/opt/penmode/.icons/xss.png</input>
+		<width>30</width>
+          <action>/opt/penmode/.moduli/terminal/xss3 &</action>
+        </button>
+        </hbox>
+        </vbox>
+        </expander>
+        </frame>
+</vbox>
+</window>
+'
+
+gtkdialog --program=MAIN_DIALOG

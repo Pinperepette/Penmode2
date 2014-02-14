@@ -1,0 +1,138 @@
+#!/bin/sh
+# Autori:
+#
+# P	@Pinperepette	
+# H	@HackerRedenti
+# # @b4d_tR1p
+# 0 @Th3Zer0
+# S @Stabros
+#########################################################################
+#  This program is free software; you can redistribute it and/or modify #
+#  it under the terms of the GNU General Public License as published by #
+#  the Free Software Foundation; either version 2 of the License, or    #
+#  (at your option) any later version.                                  #
+#                                                                       #
+#  This program is distributed in the hope that it will be useful,      #
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of       #
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the        #
+#  GNU General Public License for more details.                         #
+#                                                                       #
+#  You should have received a copy of the GNU General Public License    #
+#  along with this program; if not, write to the Free Software          #
+#  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,           #
+#  MA 02110-1301, USA.                                                  #
+############################# DISCALIMER ################################
+#  Usage of this software for probing/attacking targets without prior   #
+#  mutual consent, is illegal. It's the end user's responsability to    #
+#  obey alla applicable local laws. Developers assume no liability and  #
+#  are not responible for any missue or damage caused by thi program    #
+#########################################################################
+prog="PH#0S Penmode"
+
+Encoding=UTF-8
+
+[ -z $GTKDIALOG ] && GTKDIALOG=gtkdialog
+
+ echo $ip
+MAIN_DIALOG='
+<window title="Penmode 2-MAIL"resizable="false">
+        <vbox>
+        <menubar>
+			<menu use-underline="true">
+				<menuitem image-name="/opt/penmode/.icons/start.png" label="Start">
+				<height>22</height>
+					<action>/opt/penmode/.moduli/anonimato.sh start</action>
+				</menuitem>
+				<menuitem image-name="/opt/penmode/.icons/stop.png" label="Stop">
+				<height>22</height>
+					<action>/opt/penmode/.moduli/anonimato.sh stop</action>
+				</menuitem>
+				<menuitem image-name="/opt/penmode/.icons/restart.png" label="Restart">
+				<width>22</width>
+					<action>/opt/penmode/.moduli/anonimato.sh restart</action>
+				</menuitem>				
+				<label>"_Proxy Anonymous"</label>
+			</menu>
+		</menubar>
+		<pixmap>
+					<input file>/opt/penmode/.icons/penmode2pirate.png</input>
+				</pixmap>
+		<frame>
+		<hbox>
+		<text>
+				<label>HOST :</label>
+			</text>
+        <entry>
+			<default>out.alice.it</default>
+			<variable>host</variable>
+		</entry>
+		<text>
+				<label>PORT :</label>		
+			</text>			
+         <entry>
+			<default>25</default>
+			<variable>port</variable>
+		</entry>        
+		</hbox>
+		<hbox>
+		<text>
+				<label>"FROM:        "</label>
+			</text>
+		  <entry><variable>mfrom</variable></entry>
+		</hbox>
+				<hbox>
+		<text>
+				<label>"SENDER:    "</label>
+			</text>
+		  <entry><variable>sender</variable></entry>
+		</hbox>
+		<hbox>
+		<text>
+				<label>"TO:             "</label>
+			</text>
+		  <entry><variable>rcpt</variable></entry>
+		  </hbox>
+		  		<hbox>
+		<text>
+				<label>"RECIPIENT:"</label>
+			</text>
+		  <entry><variable>recipient</variable></entry>
+		  </hbox>
+		  <hbox>
+		    <text>
+				<label>"SUBJECT:   "</label>
+			</text>
+		  <entry><variable>subject</variable></entry>
+		</hbox>
+		<hbox>
+		<edit>
+			<variable>text</variable>
+			<height>150</height>
+			<width>350</width>
+			<default>
+            "bla bla bla..."
+			</default>
+		</edit>	
+		</hbox>
+		<hbox>
+		    <text>
+				<label>"N:"</label>
+			</text>
+		  <entry><variable>n</variable></entry>
+		  <button>
+        <input file>/opt/penmode/.icons/bomb.png</input>
+		<width>30</width>
+        <label>SEND</label>
+          <action>/opt/penmode/.moduli/anonmail | zenity --text-info  --width=700 --height=500 --title "link scanner by Penmode2" &</action>
+        </button>
+		</hbox>
+		</frame>
+	 </vbox>
+</window>
+'
+export MAIN_DIALOG
+
+case $1 in
+	-d | --dump) echo "$MAIN_DIALOG" ;;
+	*) $GTKDIALOG --program=MAIN_DIALOG ;;
+esac

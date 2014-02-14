@@ -1,0 +1,4 @@
+#!/bin/sh
+x=$(echo $path$default_repo)
+cd /opt/penmode/.moduli/repository/
+./suppository-add $x $default_dists $default_components $deb

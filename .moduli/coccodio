@@ -1,0 +1,21 @@
+#!/bin/sh
+export MAIN_DIALOG='
+<window window_position="1" title="Penmode 2" resizable="false"  image-name="/opt/penmode/.icons/icon.png">
+        <vbox spacing="0">
+ <pixmap>
+					<input file>/opt/penmode/.icons/space.png</input>
+				</pixmap>
+		<pixmap>
+					<input file>/opt/penmode/.icons/logo.png</input>
+				</pixmap>
+		                <pixmap>
+					<input file>/opt/penmode/.icons/space.png</input>
+				</pixmap>
+				         <pixmap>
+					<input file>/opt/penmode/.icons/coccodio.png</input>
+				</pixmap>
+</vbox>					
+</window>
+'
+gtkdialog --program=MAIN_DIALOG				
+							       

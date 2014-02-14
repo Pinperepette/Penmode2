@@ -1,0 +1,16 @@
+#!/bin/sh
+cd /opt/penmode/.moduli/repository/.settins/ftp/
+cat xdownload.txt > download.txt
+sed "s/pinperepette1/$user/g" download.txt > 1download.txt
+rm download.txt
+sed "s/pinperepette2/$password/g" 1download.txt > 2download.txt
+rm 1download.txt
+sed "s/pinperepette3/$port/g" 2download.txt > 3download.txt
+rm 2download.txt
+sed "s/pinperepette4/$server/g" 3download.txt > 4download.txt
+rm 3download.txt
+sed "s/pinperepette5,$directory_remota,g" 4download.txt > 5download.txt
+rm 4download.txt
+sed "s,pinperepette6,$directory_locale,g" 5download.txt > download.txt
+rm 5download.txt
+lftp -f download

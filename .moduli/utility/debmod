@@ -1,0 +1,33 @@
+#!/bin/sh
+Encoding=UTF-8
+
+export MAIN_DIALOG='
+<window window_position="1" title="DebMod">
+        <vbox>
+        <frame Select a File>
+        <hbox>
+         <button>
+        <input file>/opt/penmode/.icons/add.png</input>
+        <width>30</width>
+        <variable>FILE_BROWSE</variable>
+        <action type="fileselect">xxx</action>
+        </button>
+        <entry>
+        <variable>xxx</variable>
+        </entry>
+        </hbox>
+        <hbox>
+        <button>
+        <label>Build DEB</label>
+        <action>/opt/penmode/.moduli/utility/debmod.sh -b $xxx &</action>
+        </button>
+        <button>
+        <label>Extract DEB</label>
+        <action>/opt/penmode/.moduli/utility/debmod.sh -x $xxx &</action>
+        </button>
+        </hbox>
+        </frame>	 
+	 </vbox>
+</window>
+'
+gtkdialog --program=MAIN_DIALOG

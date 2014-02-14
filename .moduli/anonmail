@@ -1,0 +1,55 @@
+#!/bin/bash
+#Pinperepette
+#########################################################################
+# This program is free software; you can redistribute it and/or modify #
+# it under the terms of the GNU General Public License as published by #
+# the Free Software Foundation; either version 2 of the License, or #
+# (at your option) any later version. #
+# #
+# This program is distributed in the hope that it will be useful, #
+# but WITHOUT ANY WARRANTY; without even the implied warranty of #
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the #
+# GNU General Public License for more details. #
+# #
+# You should have received a copy of the GNU General Public License #
+# along with this program; if not, write to the Free Software #
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, #
+# MA 02110-1301, USA. #
+############################# DISCALIMER ################################
+# Usage of this software for probing/attacking targets without prior #
+# mutual consent, is illegal. It's the end user's responsability to #
+# obey alla applicable local laws. Developers assume no liability and #
+# are not responible for any missue or damage caused by thi program #
+########################################################################
+############### SCRIPT #############
+########################################################################
+#put the service you want to use
+
+cont=0
+XD=`expr $n - 1`
+
+while  [ "$XD" -ge "$cont" ]; do
+
+(
+echo open $host $port
+sleep 2
+echo helo ciao
+echo "mail from: <$mfrom>"
+sleep 2
+echo "rcpt to: <$rcpt>"
+sleep 2
+echo "data"
+sleep 2
+echo "from: <$sender>" "<$mfrom>"
+echo "to: <$recipient>" "<$rcpt>"
+echo "subject: <$subject>"
+sleep 2
+echo "<$text>"
+echo "."
+sleep 10
+)| telnet
+cont=`expr $cont + 1`
+echo "Send Message"
+echo $cont
+done
+

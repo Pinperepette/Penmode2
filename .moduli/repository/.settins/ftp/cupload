@@ -1,0 +1,16 @@
+#!/bin/sh
+cd /opt/penmode/.moduli/repository/.settins/ftp/
+cat xupload.txt > upload.txt
+sed "s/pinperepette1/$user/g" upload.txt > 1upload.txt
+rm upload.txt
+sed "s/pinperepette2/$password/g" 1upload.txt > 2upload.txt
+rm 1upload.txt
+sed "s/pinperepette3/$port/g" 2upload.txt > 3upload.txt
+rm 2upload.txt
+sed "s/pinperepette4/$server/g" 3upload.txt > 4upload.txt
+rm 3upload.txt
+sed "s,pinperepette5,$dremota,g" 4upload.txt > 5upload.txt
+rm 4upload.txt
+sed "s,pinperepette6,$dlocale,g" 5upload.txt > upload.txt
+rm 5upload.txt
+lftp -f upload.txt

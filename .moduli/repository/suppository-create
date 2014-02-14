@@ -1,0 +1,33 @@
+#!/bin/bash
+# Creates a simple apt repository suitable for sharing
+# via apache etc.
+
+if [ -z "$1" ]; then
+	echo usage: $0 /path/for/new/repository
+	exit 1
+fi
+
+if [ -x $1 ]; then
+	echo $1 already exists, aborting.
+	exit 2
+fi
+
+default_dists=$(cut -d: -f1 '/opt/penmode/.moduli/repository/.settins/dists.txt')
+default_archs=$(cut -d: -f1 '/opt/penmode/.moduli/repository/.settins/archs.txt')
+default_components=$(cut -d: -f1 '/opt/penmode/.moduli/repository/.settins/components.txt')
+
+dists=${dists:-$default_dists}
+
+archs=${archs:-$default_archs}
+
+components=${components:-$default_components}
+
+for dist in $dists; do
+	for component in $components; do
+		for arch in $archs; do
+			mkdir -p $1/dists/$dist/$component/binary-$arch
+		done
+	done
+done
+
+touch $1/.suppository

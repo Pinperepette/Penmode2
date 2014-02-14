@@ -1,0 +1,25 @@
+#!/bin/sh
+
+export MAIN_DIALOG='
+<window title="slowloris Penmode 2 terminal" resizable="true" image-name="/opt/penmode/.icons/icon.png">
+	<vbox>
+			<terminal has-focus="true"
+			    font-name="Monospace Bold 10"
+				background-transparent="true"
+				background-saturation="0.2"
+				background-tint-color="#223"
+				text-foreground-color="#fff">
+				<variable>vte0</variable>
+				<action>echo "vte0=$vte0 - Default child-exited signal"</action>
+				<action signal="child-exited">echo "vte0=$vte0 - Resetting and re-executing command"</action>
+				<action signal="child-exited">clear:vte0</action>
+				<action signal="child-exited">echo "vte0=$vte0 - New PID"</action>
+				<action signal="show">echo "vte0=$vte0 - show signal"</action>
+				<input>echo "/opt/penmode/.moduli/slowloris.pl -dns $IP -port $PORT -timeout 10 -num 2000"</input>
+
+			</terminal>
+
+	</vbox>
+</window>
+'
+gtkdialog --program=MAIN_DIALOG

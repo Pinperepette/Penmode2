@@ -1,0 +1,43 @@
+#!/bin/bash
+
+
+[ -z $GTKDIALOG ] && GTKDIALOG=gtkdialog
+
+progress() {
+	for i in $(seq 0 10 100); do
+		echo $i
+		[ "$i" -le 30 ] && echo "a greeting from the crew"
+		[ "$i" -le 60 -a "$i" -gt 30 ] && echo "load modules ..."
+		[ "$i" -gt 60 ] && echo "CoccoDio & Urcabalurca /all ..."
+		sleep 0.7
+
+	done;
+}; export -f progress
+
+export BAR_DIALOG='
+<window window_position="1" title="Penmode 2" image-name="/opt/penmode/.icons/icon.png">
+	<vbox>
+	<hbox>
+	<pixmap>
+					<input file>/opt/penmode/.icons/penmode2pirate.png</input>
+				</pixmap>
+	</hbox>
+		<frame Progress>
+			<progressbar>
+				<label>Some Text</label>
+				<input>bash -c progress</input>
+				<action function="closewindow">BAR_DIALOG</action>
+			</progressbar>
+		</frame>
+	</vbox>
+	<variable>BAR_DIALOG</variable>
+</window>
+'
+
+gtkdialog --program=BAR_DIALOG
+    if [ $(id -u) -eq 0 ]; then
+        /opt/penmode/.moduli/settings/avvio.sh
+    else
+        /opt/penmode/.moduli/coccodio
+fi
+

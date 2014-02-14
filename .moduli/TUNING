@@ -1,0 +1,7 @@
+#! /bin/bash
+if [$numero == "dos"] ; then
+   var=6
+   else
+   var=9
+fi
+xterm -geometry 100x90 -hold -e nikto -h $TARGET -T $var | > /opt/penmode/output/tuning.nikto.$TARGET.txt  

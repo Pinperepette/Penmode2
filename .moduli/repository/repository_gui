@@ -1,0 +1,127 @@
+#!/bin/sh
+Encoding=UTF-8
+
+dists=$(cut -d: -f1 '/opt/penmode/.moduli/repository/.settins/dists.txt')
+archs=$(cut -d: -f1 '/opt/penmode/.moduli/repository/.settins/archs.txt')
+components=$(cut -d: -f1 '/opt/penmode/.moduli/repository/.settins/components.txt')
+pathrepo=$(cut -d: -f1 '/opt/penmode/.moduli/repository/.settins/path.txt')
+repo=$(cut -d: -f1 '/opt/penmode/.moduli/repository/.settins/repo.txt')
+export MAIN_DIALOG='
+<window window_position="1" title="Repository" image-name="/opt/penmode/.icons/icon.png">
+        <vbox>
+        <frame>
+        <hbox>
+       <text>
+				<label>DISTS :</label>
+			</text>
+        <entry>
+			<default>'$dists'</default>
+			<variable>default_dists</variable>
+		</entry>
+		
+		  <button>
+        <input file>/opt/penmode/.moduli/repository/.icons/save.png</input>
+		<width>30</width>
+          <action>/opt/penmode/.moduli/repository/.settins/dists &</action>
+        </button>
+        </hbox>
+        <hbox>
+        <text>
+				<label>REPO :</label>
+			</text>
+        <entry>
+			<default>'$repo'</default>
+			<variable>default_repo</variable>
+		</entry>
+		
+		  <button>
+        <input file>/opt/penmode/.moduli/repository/.icons/save.png</input>
+		<width>30</width>
+          <action>/opt/penmode/.moduli/repository/.settins/repo &</action>
+        </button>
+        </hbox>
+        
+        <hbox>
+       <text>
+				<label>ARCHS :</label>
+			</text>
+        <entry>
+			<default>'$archs'</default>
+			<variable>default_archs</variable>
+		</entry>
+		
+		  <button>
+        <input file>/opt/penmode/.moduli/repository/.icons/save.png</input>
+		<width>30</width>
+          <action>/opt/penmode/.moduli/repository/.settins/archs &</action>
+        </button>
+        </hbox>
+        
+        
+        <hbox>
+       <text>
+				<label>COMPONENTS :</label>
+			</text>
+        <entry>
+			<default>'$components'</default>
+			<variable>default_components</variable>
+		</entry>
+		
+		  <button>
+        <input file>/opt/penmode/.moduli/repository/.icons/save.png</input>
+		<width>30</width>
+          <action>/opt/penmode/.moduli/repository/.settins/components &</action>
+        </button>
+        </hbox>
+         
+         
+         <hbox>
+        <button>
+        <input file>/opt/penmode/.icons/add.png</input>
+        <width>30</width>
+        <variable>FILE_BROWSE</variable>
+        <action type="fileselect">path</action>
+        </button>
+        <entry>
+        <default>'$pathrepo'</default>
+        <variable>path</variable>
+        </entry>
+        		  <button>
+        <input file>/opt/penmode/.moduli/repository/.icons/save.png</input>
+		<width>30</width>
+          <action>/opt/penmode/.moduli/repository/.settins/path &</action>
+        </button>
+         </hbox> 
+	
+        </frame>
+        <frame>
+        <vbox>
+        <hbox>
+        
+        <button>
+        <input file>/opt/penmode/.icons/add.png</input>
+        <width>30</width>
+        <variable>FILE_BROWSE</variable>
+        <action type="fileselect">deb</action>
+        </button>
+        <entry>
+        <variable>deb</variable>
+        </entry>
+        
+        <button>
+        <label>ADD DEB</label>
+        <action>/opt/penmode/.moduli/repository/.settins/add &</action>
+        </button>
+        
+        <button>
+        <label>NEW REPO</label>
+        <action>/opt/penmode/.moduli/repository/.settins/crea &</action>
+        </button>
+        
+        </hbox>
+        </vbox>
+        </frame>	 
+	 </vbox>
+</window>
+'
+gtkdialog --program=MAIN_DIALOG

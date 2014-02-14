@@ -1,0 +1,86 @@
+#! /bin/bash
+Encoding=UTF-8
+dim=$(cat '/opt/penmode/.moduli/settings/dim.txt')
+serv=$(cat '/opt/penmode/.moduli/settings/serv.txt')
+export MAIN_DIALOG='
+<window window_position="1" title="Settings">
+
+<vbox>
+  <hbox homogeneous="True">
+    <frame Size Main Form>
+    <hbox homogeneous="True">
+      <hbox>
+      <pixmap>
+      <width>60</width>
+	  <input file>/opt/penmode/.icons/settings.png</input>
+	  </pixmap>
+      </hbox>
+      
+      <vbox homogeneous="True">
+        <button>
+        <input file>/opt/penmode/.icons/finestra.png</input>
+		<width>30</width>
+        <label>Normal </label>
+          <action>echo "2" > /opt/penmode/.moduli/settings/dimensione.txt &</action>
+        </button>
+
+        <button>
+        <input file>/opt/penmode/.icons/finestra.png</input>
+		<width>30</width>
+        <label>Small </label>
+          <action>echo "1" > /opt/penmode/.moduli/settings/dimensione.txt &</action>
+        </button>
+        
+      </vbox>
+    </hbox>
+    </frame>
+
+    <vbox>
+      <frame Size Icons Menu>
+
+       <text>
+			<label> Size :</label>
+			</text>
+        <entry>
+			<default>'$dim'</default>
+			<variable>size</variable>
+		</entry>
+		
+        <hbox>
+        <button>
+        <input file>/opt/penmode/.moduli/repository/.icons/save.png</input>
+		<width>30</width>
+          <action>echo $size > /opt/penmode/.moduli/settings/dim.txt &</action>
+        </button>
+        </hbox>
+        </frame>
+      </vbox>
+    </hbox>
+    <frame>
+    <text wrap="false" angle="5">
+	<label>"Changes will be present 
+	at the next reboot 
+	of penmode 2"</label>
+	</text>
+	</frame>
+	<frame Resolve ip Service>
+	<hbox>
+	<text>
+	<label>Service  :</label>
+	</text>
+    <entry>
+	<default>'$serv'</default>
+	<variable>servizio</variable>
+	</entry>
+	<button>
+    <input file>/opt/penmode/.moduli/repository/.icons/save.png</input>
+	<width>30</width>
+    <action>echo $servizio > /opt/penmode/.moduli/settings/serv.txt &</action>
+    </button>
+	</hbox>
+	</frame>			
+  </vbox>
+  </window>
+  '
+
+  gtkdialog --program=MAIN_DIALOG

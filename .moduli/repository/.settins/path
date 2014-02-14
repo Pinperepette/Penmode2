@@ -1,0 +1,2 @@
+#!/bin/sh
+echo $path > /opt/penmode/.moduli/repository/.settins/path.txt

@@ -1,0 +1,2 @@
+#!/bin/sh
+echo $default_archs > /opt/penmode/.moduli/repository/.settins/archs.txt

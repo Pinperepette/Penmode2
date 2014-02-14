@@ -1,0 +1,42 @@
+#!/bin/bash
+# Add a file to a repository created with suppository-add
+if [ -z "$1" ] || [ -z "$2" ] || [ -z "$3" ] || [ -z "$4" ]; then
+	echo "usage: $0 <repository path> <dist> <component> <deb file>"
+	exit 1
+fi
+
+repo_path=$1
+dist=$2
+component=$3
+deb_file=$4
+
+if [ ! -f $repo_path/.suppository ]; then
+	echo "Not a valid suppository."
+	exit 2
+fi
+
+if [ ! -d $repo_path/dists/$dist ]; then
+	echo "Invalid dist name."
+	exit 3
+fi
+
+if [ ! -d $repo_path/dists/$dist/$component ]; then
+	echo "Invalid component name."
+	exit 4
+fi
+
+
+
+archs=$(dpkg -f $deb_file Architecture)
+if [ $archs = "all" ]; then
+	arch_dirs=$(find $repo_path/dists/$dist/$component -type d -name "binary-*")
+	for arch_dir in $arch_dirs; do
+		cp $deb_file $arch_dir
+	done
+else
+	for arch in $archs; do
+		cp $deb_file $repo_path/dists/$dist/$component/binary-$arch
+	done
+fi
+
+./suppository-generate $repo_path

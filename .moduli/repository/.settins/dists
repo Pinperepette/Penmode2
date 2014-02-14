@@ -1,0 +1,2 @@
+#!/bin/sh
+echo $default_dists > /opt/penmode/.moduli/repository/.settins/dists.txt

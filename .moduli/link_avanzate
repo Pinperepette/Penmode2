@@ -1,0 +1,56 @@
+#!/bin/sh
+
+Encoding=UTF-8
+		
+export MAIN_DIALOG='
+<window window_position="1" title="Link Avanzate Search" image-name="/opt/penmode/.icons/icon.png">
+<vbox>
+<pixmap>
+					<input file>/opt/penmode/.icons/space.png</input>
+				</pixmap>
+		<pixmap>
+					<input file>/opt/penmode/.icons/triade.png</input>
+				</pixmap>
+		                <pixmap>
+					<input file>/opt/penmode/.icons/space.png</input>
+				</pixmap>		
+  
+        <frame Search link in url>
+        <hbox>
+        <text>
+				<label>Link :</label>
+			</text>
+        <entry>
+			<variable>url</variable>
+		</entry>
+		<button>
+		<input file>/opt/penmode/.icons/cercaurl.png</input>
+		<width>30</width>
+        <label> SEARCH URL </label>
+          <action>/opt/penmode/.moduli/utility/cava_links.sh A &</action>
+        </button>
+        </hbox>
+        </frame>
+        <frame Search link url in list txt file>
+        <hbox>
+                <button>
+        <input file>/opt/penmode/.icons/add.png</input>
+        <width>30</width>
+        <variable>FILE_BROWSE</variable>
+        <action type="fileselect">filename</action>
+        </button>
+        <entry>
+        <variable>filename</variable>
+        </entry>
+        <button>
+		<input file>/opt/penmode/.icons/cercaurl.png</input>
+		<width>30</width>
+        <label> SEARCH URL </label>
+          <action>/opt/penmode/.moduli/terminal/cava &</action>
+        </button>
+        </hbox>
+        </frame>
+	    </vbox>
+</window>
+'
+gtkdialog --program=MAIN_DIALOG

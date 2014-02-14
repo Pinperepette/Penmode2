@@ -1,0 +1,65 @@
+#! /bin/bash
+ccc=/opt/penmode/.moduli/dork/google1dork.txt
+http="http://"
+export MAIN_DIALOG='
+	<window title="Penmode2 Sqlmap"resizable="false" image-name="/opt/penmode/.icons/icon.png">
+    <vbox>
+    <pixmap>
+    <input file>/opt/penmode/.icons/stab.jpg</input>
+	</pixmap>
+	<pixmap>
+    <input file>/opt/penmode/.icons/space.png</input>
+	</pixmap>
+    <frame Google Dork>
+    <hbox>
+     <text>
+			<label> DORK :</label>
+			</text>
+        <entry>
+			<variable>dork</variable>
+		</entry>
+
+		<button>
+        <input file>/opt/penmode/.icons/google.png</input>
+		<width>30</width>
+          <action>/opt/penmode/.moduli/terminal/sqlmap2 &</action>
+        </button>
+        
+    </hbox>  
+    <hbox>
+    <button>
+        <label> DORK txt </label>
+          <action> $ccc| zenity --text-info  --width=700 --height=500 --title "Google Dork file" --filename '$ccc' &</action>
+        </button>
+        <button>
+        <input file>/opt/penmode/.icons/folder.png</input>
+		<width>30</width>
+        <action>nautilus /opt/penmode/output/ &</action>
+        </button> 
+    </hbox>
+    </frame> 
+    <frame  wizard>
+    <hbox>
+    <terminal has-focus="true"
+			    font-name="Monospace Bold 10"
+				background-transparent="true"
+				background-saturation="0.2"
+				background-tint-color="#223"
+				text-foreground-color="#fff">
+				<variable>vte0</variable>
+				<action>echo "vte0=$vte0 - Default child-exited signal"</action>
+				<action signal="child-exited">echo "vte0=$vte0 - Resetting and re-executing command"</action>
+				<action signal="child-exited">clear:vte0</action>
+				<action signal="child-exited">echo "vte0=$vte0 - New PID"</action>
+				<action signal="show">echo "vte0=$vte0 - show signal"</action>
+				<input>echo "sqlmap --wizard"</input>
+
+	</terminal>
+    </hbox>
+    </frame>
+
+</vbox>
+</window>
+'
+
+gtkdialog --program=MAIN_DIALOG

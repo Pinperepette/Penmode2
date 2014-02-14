@@ -1,0 +1,3 @@
+open -u pinperepette1,pinperepette2 -p pinperepette3 pinperepette4
+mirror -c -e -R pinperepette5 pinperepette6
+exit 

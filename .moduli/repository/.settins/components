@@ -1,0 +1,2 @@
+#!/bin/sh
+echo $default_components > /opt/penmode/.moduli/repository/.settins/components.txt

@@ -1,0 +1,4 @@
+#! /bin/bash
+/opt/penmode/.moduli/penmode2keep
+/opt/penmode/.moduli/penmode2dos
+/opt/penmode/.moduli/penmode2torshammer

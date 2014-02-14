@@ -1,0 +1,65 @@
+#! /bin/bash
+ip=`tor-resolve $TARGET`
+echo $ip
+export MAIN_DIALOG='
+	<window title="Penmode2 Torshammer"resizable="false" image-name="/opt/penmode/.icons/icon.png">
+	 <vbox>
+	 
+	 
+	<pixmap>
+					<input file>/opt/penmode/.icons/0.png</input>
+				</pixmap>
+				
+					
+    <pixmap>
+					<input file>/opt/penmode/.icons/space.png</input>
+				</pixmap>
+				
+				
+				<frame>
+				
+           <hbox>
+        <text>
+			<label> TARGET :</label>
+			</text>
+        <entry>
+			<default>'$ip'</default>
+			<variable>targetip</variable>
+		</entry>
+         
+     </hbox>
+     
+     <hbox>
+     
+      <text>
+			<label> THREADS :</label>
+			</text>
+        <entry>
+			<default>256</default>
+			<variable>threads</variable>
+		</entry> 
+		<text>
+			<label> PORT :</label>
+			</text>
+        <entry>
+			<default>80</default>
+			<variable>port</variable>
+		</entry> 
+     
+     </hbox>
+         <pixmap>
+					<input file>/opt/penmode/.icons/space.png</input>
+				</pixmap>
+     <button>
+         <label>ATTACK</label>
+         <input file>/opt/penmode/.icons/force.png</input>
+         <width>30</width>         
+         <action>/opt/penmode/.moduli/terminal/Torshammer &</action>
+         </button>
+     </frame>	 
+       
+</vbox>
+</window>
+'
+
+gtkdialog --program=MAIN_DIALOG

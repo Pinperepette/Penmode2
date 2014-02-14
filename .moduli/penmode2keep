@@ -1,0 +1,108 @@
+#! /bin/bash
+ip=`tor-resolve $TARGET`
+echo $ip
+export MAIN_DIALOG='
+	<window title="Penmode2 Keep Dead"resizable="false" image-name="/opt/penmode/.icons/icon.png">
+	 <vbox>
+	 
+	 
+	<pixmap>
+					<input file>/opt/penmode/.icons/keep.png</input>
+				</pixmap>
+				
+					
+    <pixmap>
+					<input file>/opt/penmode/.icons/space.png</input>
+				</pixmap>
+				
+				
+				<frame>
+				
+           <hbox>
+           
+       <text>
+			<label> TARGET :</label>
+			</text>
+        <entry>
+			<default>'$ip'</default>
+			<variable>targetip</variable>
+		</entry>
+		   </hbox>
+		   
+        <expander expander="false" use-underline="false">
+
+		  <vbox>
+		  
+		   <hbox>
+		  <text>
+			<label> REQUESTS :</label>
+			</text>
+        <entry>
+			<default>100000000</default>
+			<variable>requests</variable>
+		</entry> 
+		</hbox>
+		
+		<hbox>
+		
+		 <text>
+			<label> MAX REQUESTS FOR CONNECTION :</label>
+			</text>
+        <entry>
+			<default>100</default>
+			<variable>max</variable>
+		</entry> 
+		   </hbox>
+		   
+		<hbox>
+		 <text>
+			<label> NUMBER OF SECONDS TO DELAY BETWEEN OUTGOING REQUESTS :</label>
+			</text>
+        <entry>
+			<default>0.5</default>
+			<variable>delay</variable>
+		</entry> 
+		</hbox>
+		
+		<hbox>
+		
+		<text>
+			<label> BETWEEN R. :</label>
+			</text>
+        <entry>
+        
+			<default>0.01</default>
+			<variable>brequests</variable>
+		</entry>
+		 
+		</hbox>
+		</vbox>
+	</expander>
+		
+		<hbox>
+		
+		<text>
+      <label>CHECH:</label>
+    </text>
+    
+    <combobox>
+      <variable>skip</variable>
+      <item>0</item>
+      <item>1</item>
+    </combobox> 
+    
+	     <button>
+         <input file>/opt/penmode/.icons/force.png</input>
+         <width>30</width>
+         <action>/opt/penmode/.moduli/Keep/keep.sh &</action>
+         </button>
+         
+     </hbox>
+     
+     </frame>	 
+       
+</vbox>
+</window>
+'
+
+gtkdialog --program=MAIN_DIALOG

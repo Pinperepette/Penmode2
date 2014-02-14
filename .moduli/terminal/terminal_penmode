@@ -1,0 +1,53 @@
+#!/bin/sh
+
+TMPDIR=/tmp/penmode/tmp_dir/"`basename $0`"
+mkdir -p "$TMPDIR"
+cd /root/
+export MAIN_DIALOG='
+<window title=" Penmode 2 terminal" resizable="true" image-name="/opt/penmode/.icons/icon.png">
+<vbox>
+         <menubar>
+         		<menu use-underline="true">
+				<menuitem image-name="/opt/penmode/.icons/terminal.png" label="Open Terminal">
+				<height>22</height>
+				<action>/root/.terminal_penmode &</action>
+				</menuitem>
+							
+				<label>"_File   "</label>
+			</menu>
+         
+         
+			<menu use-underline="true">
+				<menuitem image-name="/opt/penmode/.icons/start.png" label="Start">
+				<height>22</height>
+					<action>/opt/penmode/.moduli/anonimato.sh start &</action>
+				</menuitem>
+				<menuitem image-name="/opt/penmode/.icons/stop.png" label="Stop">
+				<height>22</height>
+					<action>/opt/penmode/.moduli/anonimato.sh stop &</action>
+				</menuitem>
+				<menuitem image-name="/opt/penmode/.icons/restart.png" label="Restart">
+				<width>22</width>
+					<action>/opt/penmode/.moduli/anonimato.sh restart &</action>
+				</menuitem>				
+				<label>"_Proxy Anonymous   "</label>
+			</menu>
+			
+			
+		</menubar>
+	<vbox>
+	        <hseparator></hseparator>
+	        
+			<terminal argv0="/bin/bash"
+			    space-expand="true"
+			    space-fill="true"
+				background-transparent="true"
+				background-saturation="0.2"
+				background-tint-color="#223"
+				text-foreground-color="#fff">	
+			</terminal>
+	</vbox>
+	</vbox>
+</window>
+'
+gtkdialog --program=MAIN_DIALOG

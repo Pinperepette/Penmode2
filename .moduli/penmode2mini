@@ -1,0 +1,500 @@
+#!/bin/sh
+# Autori:
+#
+# P	@Pinperepette	
+# H	@HackerRedenti
+# # @b4d_tR1p
+# 0 @Th3Zer0
+# S @Stabros
+#########################################################################
+#  This program is free software; you can redistribute it and/or modify #
+#  it under the terms of the GNU General Public License as published by #
+#  the Free Software Foundation; either version 2 of the License, or    #
+#  (at your option) any later version.                                  #
+#                                                                       #
+#  This program is distributed in the hope that it will be useful,      #
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of       #
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the        #
+#  GNU General Public License for more details.                         #
+#                                                                       #
+#  You should have received a copy of the GNU General Public License    #
+#  along with this program; if not, write to the Free Software          #
+#  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,           #
+#  MA 02110-1301, USA.                                                  #
+############################# DISCALIMER ################################
+#  Usage of this software for probing/attacking targets without prior   #
+#  mutual consent, is illegal. It's the end user's responsability to    #
+#  obey alla applicable local laws. Developers assume no liability and  #
+#  are not responible for any missue or damage caused by thi program    #
+#########################################################################
+prog="PH#0S Penmode"
+dim=$(cat '/opt/penmode/.moduli/settings/dim.txt')
+Encoding=UTF-8
+/etc/init.d/tor restart
+export MAIN_DIALOG='
+<window window_position="1" title="Penmode 2" resizable="false"  image-name="/opt/penmode/.icons/icon.png">
+        <vbox>
+         <menubar>
+			<menu use-underline="true">
+				<menuitem image-name="/opt/penmode/.icons/start.png" label="Start">
+				<height>'$dim'</height>
+					<action>/opt/penmode/.moduli/anonimato.sh start &</action>
+				</menuitem>
+				<menuitem image-name="/opt/penmode/.icons/stop.png" label="Stop">
+				<height>'$dim'</height>
+					<action>/opt/penmode/.moduli/anonimato.sh stop &</action>
+				</menuitem>
+				<menuitem image-name="/opt/penmode/.icons/restart.png" label="Restart">
+				<width>'$dim'</width>
+					<action>/opt/penmode/.moduli/anonimato.sh restart &</action>
+				</menuitem>				
+				<label>"Anon Surf "</label>
+			</menu>
+			<menu use-underline="true">
+				<menuitem image-name="/opt/penmode/.icons/bomb.png" label="Mail Bomb">
+				<height>'$dim'</height>
+				<action>/opt/penmode/.moduli/penmode2mail &</action>			
+				</menuitem>	
+				<menuitem image-name="/opt/penmode/.icons/xss.png" label="XSS">
+				<height>'$dim'</height>
+				<action>/opt/penmode/.moduli/penmode2XSS &</action>	
+				</menuitem>
+				<menuitem image-name="/opt/penmode/.icons/sqlmap.png" label="SqlMap">
+				<height>'$dim'</height>
+				<action>/opt/penmode/.moduli/penmode2sqlmap &</action>			
+				</menuitem>	
+				
+				<menuitem image-name="/opt/penmode/.icons/cripto.png" label="md5 crack">
+				<height>'$dim'</height>
+				<action>/opt/penmode/.moduli/penmode2md5 &</action>			
+				</menuitem>	
+							
+				<label>"_Moduli   "</label>
+			</menu>
+			
+			<menu use-underline="true">
+				<menuitem image-name="/opt/penmode/.icons/debian.png" label="Repository">
+				<height>'$dim'</height>
+				<action>/opt/penmode/.moduli/repository/repository_gui &</action>
+				</menuitem>	
+					<menuitem image-name="/opt/penmode/.icons/debmod.png" label="Debmod">
+				<height>'$dim'</height>
+				<action>/opt/penmode/.moduli/debmod &</action>
+				</menuitem>	
+					<menuitem image-name="/opt/penmode/.icons/criptator.png" label="Criptator">
+				<height>'$dim'</height>
+				<action>/opt/penmode/.moduli/utility/criptator &</action>
+				</menuitem>	
+				<menuitem image-name="/opt/penmode/.icons/terminal.png" label="Terminal Penmode">
+				<height>'$dim'</height>
+				<action>/opt/penmode/.moduli/terminal/terminal_penmode &</action>
+				</menuitem>	
+				<menuitem image-name="/opt/penmode/.icons/cercaurl.png" label="Search avanzate">
+				<height>'$dim'</height>
+				<action>/opt/penmode/.moduli/link_avanzate &</action>
+				</menuitem>	
+				<menuitem image-name="/opt/penmode/.icons/cookiecadger.png" label="CookieCadger">
+				<height>'$dim'</height>
+				<action>java -jar /opt/penmode/.moduli/utility/CookieCadger-1.06.jar &</action>
+				</menuitem>					
+				<label>"_Utility     "</label>
+			</menu>
+			
+			
+			<menu use-underline="true">
+                <menuitem image-name="/opt/penmode/.icons/slowloris.png" label="Slowloris">
+				<height>'$dim'</height>
+				<action>/opt/penmode/.moduli/penmode2dos &</action>
+				</menuitem>	
+				<menuitem image-name="/opt/penmode/.icons/dead.png" label="Keep Dead">
+				<height>'$dim'</height>
+				<action>/opt/penmode/.moduli/penmode2keep &</action>
+				</menuitem>	
+				<menuitem image-name="/opt/penmode/.icons/121.png" label="Torshammer">
+				<height>'$dim'</height>
+				<action>/opt/penmode/.moduli/penmode2torshammer &</action>
+				</menuitem>	
+				<menuitem image-name="/opt/penmode/.icons/122.png" label="Loic">
+				<height>'$dim'</height>
+				<action>java -jar /opt/penmode/.moduli/utility/JavaLOIC.2.jar &</action>
+				</menuitem>	
+				<menuitem image-name="/opt/penmode/.icons/3ade.png" label="Triade">
+				<height>'$dim'</height>
+				<action>/opt/penmode/.moduli/utility/triade &</action>
+				</menuitem>				
+				<label>"Stress Testing"</label>
+			</menu>
+			
+			<menu use-underline="true">
+                <menuitem image-name="/opt/penmode/.icons/settings.png" label="Settings">
+				<height>'$dim'</height>
+				<action>/opt/penmode/.moduli/settings/settings &</action>
+				</menuitem>		
+				<label>"   Settings  "</label>
+			</menu>	
+			
+		</menubar>
+		<frame>
+		<pixmap>
+					<input file>/opt/penmode/.icons/logo.png</input>
+				</pixmap>
+
+				</frame>							   
+<frame TARGET>
+		<pixmap>
+					<input file>/opt/penmode/.icons/space.png</input>
+				</pixmap>
+				<hbox>
+		 <entry><variable>TARGET</variable></entry> 
+		  <button>
+        <input file>/opt/penmode/.icons/folder.png</input>
+		<width>30</width>
+          <action>nautilus /opt/penmode/output/ &</action>
+        </button>        
+		</hbox>
+		</frame>
+		
+		
+		
+		                <pixmap>
+					<input file>/opt/penmode/.icons/space.png</input>
+				</pixmap>
+
+				
+		<notebook labels="Information Gathering|Web Scanner|Cms">		
+		<notebook labels="FOOTPRINTING|DMITRY|altro">		
+		<vbox>
+				                <pixmap>
+					<input file>/opt/penmode/.icons/space.png</input>
+				</pixmap>
+		                <pixmap>
+					<input file>/opt/penmode/.icons/space.png</input>
+				</pixmap>		
+		<hbox>
+		
+		
+		<button>
+		<input file>/opt/penmode/.icons/cercaurl.png</input>
+		<width>30</width>
+        <label> SEARCH URL </label>
+          <action>/opt/penmode/.moduli/urlanalisi | zenity --text-info  --width=700 --height=500 --title "link scanner by Penmode2" &</action>
+        </button>
+		
+		
+		<button>
+		<input file>/opt/penmode/.icons/dns.png</input>
+		<width>30</width>
+        <label> DNSENUM  </label>
+          <action>/opt/penmode/.moduli/terminal/dnsenum &</action>
+        </button>
+        <button>
+        <input file>/opt/penmode/.icons/web.png</input>
+		<width>30</width>
+        <label>WHATWEB </label>
+          <action>/opt/penmode/.moduli/terminal/whatweb &</action>
+        </button>
+        <button>
+        <input file>/opt/penmode/.icons/nmap.png</input>
+		<width>30</width>
+        <label>NMAP </label>
+          <action>/opt/penmode/.moduli/terminal/nmap &</action>
+        </button>
+        </hbox> 
+        </vbox>
+        
+        <vbox>
+                				                <pixmap>
+					<input file>/opt/penmode/.icons/space.png</input>
+				</pixmap>
+		<hbox>
+		        				                <pixmap>
+					<input file>/opt/penmode/.icons/space.png</input>
+				</pixmap>
+		</hbox>		
+        <hbox>     
+        <button>
+		<input file>/opt/penmode/.icons/o.png</input>
+		<width>30</width>
+        <label>Lookup</label>
+          <action>/opt/penmode/.moduli/terminal/Lookup &</action>
+        </button>
+        
+        
+        <button>
+		<input file>/opt/penmode/.icons/mail.png</input>
+		<width>30</width>
+        <label>Mail</label>
+          <action>/opt/penmode/.moduli/terminal/Mail &</action>
+        </button>        
+        
+ 
+               <button>
+		<input file>/opt/penmode/.icons/dmitry.png</input>
+		<width>30</width>
+        <label>Subdomain</label>
+          <action>/opt/penmode/.moduli/terminal/Subdomain &</action>
+        </button> 
+       
+        <button>
+        <input file>/opt/penmode/.icons/folder.png</input>
+		<width>30</width>
+          <action>nautilus /opt/penmode/output/ &</action>
+        </button> 
+        </hbox>
+        </vbox>
+        
+        </notebook>
+		<notebook tab-labels="UNISCAN|NIKTO|altro">
+
+		<vbox>
+		                <pixmap>
+					<input file>/opt/penmode/.icons/space.png</input>
+				</pixmap>
+		<hbox>
+		<pixmap>
+					<input file>/opt/penmode/.icons/space.png</input>
+				</pixmap>
+		</hbox>		
+		<hbox>
+		<button>
+        <input file>/opt/penmode/.icons/uniscan.png</input>
+		<width>30</width>
+		<label>Single</label>
+          <action>/opt/penmode/.moduli/terminal/Single &</action>
+        </button>
+        
+        <button>
+        <input file>/opt/penmode/.icons/add.png</input>
+        <width>30</width>
+        <variable>FILE_BROWSE</variable>
+        <action type="fileselect">unitxt</action>
+      </button>
+      <entry>
+        <variable>unitxt</variable>
+      </entry>
+      
+      	<button>
+        <input file>/opt/penmode/.icons/uniscan.png</input>
+		<width>30</width>
+        <label>File</label>
+          <action>/opt/penmode/.moduli/terminal/File &</action>
+        </button>
+        
+        <button>
+        <input file>/opt/penmode/.icons/folder.png</input>
+		<width>30</width>
+          <action>nautilus /usr/share/uniscan/report/ &</action>
+        </button>        
+		</hbox>
+		</vbox>
+		
+		<vbox>
+		                <pixmap>
+					<input file>/opt/penmode/.icons/space.png</input>
+				</pixmap>
+				<hbox>
+		<pixmap>
+					<input file>/opt/penmode/.icons/space.png</input>
+				</pixmap>
+		</hbox>					
+		<hbox>
+		
+      	<button>
+        <input file>/opt/penmode/.icons/nikto.png</input>
+		<width>30</width>
+        <label>Standard</label>
+          <action>/opt/penmode/.moduli/terminal/Standard  &</action>
+        </button>
+       
+        <button>
+        <input file>/opt/penmode/.icons/nikto.png</input>
+		<width>30</width>
+        <label>SSL</label>
+          <action>/opt/penmode/.moduli/terminal/SSL &</action>
+        </button>
+        
+    
+    <combobox>
+      <variable>numero</variable>
+      <item>dos</item>
+      <item>SQLi</item>
+    </combobox> 
+        
+        <button>
+        <input file>/opt/penmode/.icons/nikto.png</input>
+		<width>30</width>
+        <label>TUNING</label>
+          <action>/opt/penmode/.moduli/TUNING &</action>
+        </button>        
+        
+       
+		</hbox>
+		
+		</vbox>
+		</notebook>
+							
+      <notebook labels="WPSCAN|WP BRUTE FORCE|JOOMSCAN|TYPO 3">
+<vbox>
+        <hbox>
+        		<pixmap>
+					<input file>/opt/penmode/.icons/space.png</input>
+				</pixmap>
+		</hbox>
+		        <hbox>
+        		<pixmap>
+					<input file>/opt/penmode/.icons/space.png</input>
+				</pixmap>
+	    </hbox> 
+     <hbox>
+        <button>
+        <input file>/opt/penmode/.icons/generic.png</input>
+		<width>30</width>
+            <label>Generic</label>
+            <action> /opt/penmode/.moduli/terminal/Generic &</action>
+        </button>    
+        <button>
+        <input file>/opt/penmode/.icons/plugin.png</input>
+		<width>30</width>
+            <label>Plugins</label>
+            <action>/opt/penmode/.moduli/terminal/Plugins &</action>
+        </button> 
+        <button>
+        <input file>/opt/penmode/.icons/themes.png</input>
+		<width>30</width>
+            <label>Themes</label>
+            <action>/opt/penmode/.moduli/terminal/Themes &</action>
+        </button> 
+        <button>
+        <input file>/opt/penmode/.icons/thumbs.png</input>
+		<width>30</width>
+            <label>Thumbs</label>
+            <action> /opt/penmode/.moduli/terminal/Thumbs &</action>
+        </button> 
+        <button>
+        <input file>/opt/penmode/.icons/cercauser.png</input>
+		<width>30</width>
+            <label>Users</label>
+            <action> /opt/penmode/.moduli/terminal/Users &</action>
+        </button> 
+                        		<pixmap>
+					<input file>/opt/penmode/.icons/space10x4.png</input>
+				</pixmap>
+        </hbox>
+        <hbox>
+        		<pixmap>
+					<input file>/opt/penmode/.icons/space.png</input>
+				</pixmap>
+		</hbox>
+        </vbox>
+<vbox> 
+        <hbox>
+        		<pixmap>
+					<input file>/opt/penmode/.icons/space.png</input>
+				</pixmap>
+		</hbox>
+		        <hbox>
+        		<pixmap>
+					<input file>/opt/penmode/.icons/space.png</input>
+				</pixmap>
+	    </hbox> 
+        <hbox>
+        
+ <entry>
+        <variable>file</variable>
+      </entry>
+      <button>
+        <input file>/opt/penmode/.icons/add.png</input>
+        <width>30</width>
+        <variable>FILE_BROWSE</variable>
+        <action type="fileselect">file</action>
+      </button>
+        
+        
+        <button>
+            <input file>/opt/penmode/.icons/users2.png</input>
+		<width>30</width>
+            <label>BF psw Users</label>
+            <action> /opt/penmode/.moduli/terminal/UsersA &</action>
+        </button> 
+        <button>
+		<input file>/opt/penmode/.icons/users.png</input>
+		<width>30</width>
+            <label>BF psw admin</label>
+            <action> /opt/penmode/.moduli/terminal/UsersB &</action>
+        </button> 
+                        		<pixmap>
+					<input file>/opt/penmode/.icons/space10x4.png</input>
+				</pixmap>
+        </hbox>
+        <hbox>
+        		<pixmap>
+					<input file>/opt/penmode/.icons/space.png</input>
+				</pixmap>
+		</hbox>
+        </vbox> 
+<vbox>
+        <hbox>
+        		<pixmap>
+					<input file>/opt/penmode/.icons/space.png</input>
+				</pixmap>
+		</hbox>
+		        <hbox>
+        		<pixmap>
+					<input file>/opt/penmode/.icons/space.png</input>
+				</pixmap>
+	    </hbox> 
+		<hbox>
+        <button>
+            <label>Generic Scan</label>
+            <input file>/opt/penmode/.icons/generic.png</input>
+		<width>30</width>
+		<action>/opt/penmode/.moduli/terminal/joomscan &</action> 
+        </button>
+                		<pixmap>
+					<input file>/opt/penmode/.icons/space10x4.png</input>
+				</pixmap>
+        </hbox>
+        </vbox>
+        <vbox>
+        <hbox>
+        		<pixmap>
+					<input file>/opt/penmode/.icons/space.png</input>
+				</pixmap>
+		</hbox>
+		        <hbox>
+        		<pixmap>
+					<input file>/opt/penmode/.icons/space.png</input>
+				</pixmap>
+	    </hbox> 
+		<hbox>
+		
+		<button>
+            <label>Generic</label>
+            <input file>/opt/penmode/.icons/generic.png</input>
+		<width>30</width>
+		<action>/opt/penmode/.moduli/terminal/typo &</action> 
+        </button>
+        
+        <text>
+			<label> REQUESTS :</label>
+			</text>
+        <entry>
+			<default>/etc/passwd</default>
+			<variable>requests</variable>
+		</entry> 
+        		<button>
+            <label>Avanzate</label>
+            <input file>/opt/penmode/.icons/generic.png</input>
+		<width>30</width>
+		<action>/opt/penmode/.moduli/terminal/typo1 &</action> 
+        </button>
+        
+        
+		</hbox>
+        </vbox>
+        </notebook>
+	    </notebook>      
+	 </vbox>
+</window>
+'
+gtkdialog --program=MAIN_DIALOG

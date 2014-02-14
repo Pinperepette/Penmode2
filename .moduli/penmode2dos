@@ -1,0 +1,119 @@
+#!/bin/sh
+# Autori:
+#
+# P	@Pinperepette	
+# H	@HackerRedenti
+# # @b4d_tR1p
+# 0 @Th3Zer0
+# S @Stabros
+#########################################################################
+#  This program is free software; you can redistribute it and/or modify #
+#  it under the terms of the GNU General Public License as published by #
+#  the Free Software Foundation; either version 2 of the License, or    #
+#  (at your option) any later version.                                  #
+#                                                                       #
+#  This program is distributed in the hope that it will be useful,      #
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of       #
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the        #
+#  GNU General Public License for more details.                         #
+#                                                                       #
+#  You should have received a copy of the GNU General Public License    #
+#  along with this program; if not, write to the Free Software          #
+#  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,           #
+#  MA 02110-1301, USA.                                                  #
+############################# DISCALIMER ################################
+#  Usage of this software for probing/attacking targets without prior   #
+#  mutual consent, is illegal. It's the end user's responsability to    #
+#  obey alla applicable local laws. Developers assume no liability and  #
+#  are not responible for any missue or damage caused by thi program    #
+#########################################################################
+prog="PH#0S Penmode"
+
+Encoding=UTF-8
+
+[ -z $GTKDIALOG ] && GTKDIALOG=gtkdialog
+
+ip=`tor-resolve $TARGET`
+echo $ip
+
+export MAIN_DIALOG='
+<window title="Penmode 2-Stress Testing Slowloris" image-name="/opt/penmode/.icons/icon.png">
+        <vbox>
+        <menubar>
+			<menu use-underline="true">
+				<menuitem image-name="/opt/penmode/.icons/start.png" label="Start">
+				<height>22</height>
+					<action>/opt/penmode/.moduli/anonimato.sh start</action>
+				</menuitem>
+				<menuitem image-name="/opt/penmode/.icons/stop.png" label="Stop">
+				<height>22</height>
+					<action>/opt/penmode/.moduli/anonimato.sh stop</action>
+				</menuitem>
+				<menuitem image-name="/opt/penmode/.icons/restart.png" label="Restart">
+				<width>22</width>
+					<action>/opt/penmode/.moduli/anonimato.sh restart</action>
+				</menuitem>				
+				<label>"_Proxy Anonymous"</label>
+			</menu>
+		</menubar>
+		<pixmap>
+					<input file>/opt/penmode/.icons/penmode2.png</input>
+				</pixmap>
+	<frame Slowloris>
+	<hbox>
+	<text>
+			<label> TARGET :</label>
+			</text>
+        <entry>
+			<default>'$ip'</default>
+			<variable>targetip</variable>
+		</entry>
+	<text>
+				<label>Normal Mode:</label>
+			</text>
+	<button>
+        <input file>/opt/penmode/.icons/force.png</input>
+		<width>30</width>
+        <label>ATTACK </label>
+          <action>/opt/penmode/.moduli/terminal/slowloris1 &</action>
+        </button>
+    </hbox>
+	<frame Avanzate>
+		  <hbox>
+		  <text>
+				<label>"    IP :"</label>
+			</text>
+		  <entry><variable>IP</variable></entry>
+		  <text>
+				<label>"     PORT :"</label>
+			</text>
+		  <entry><variable>PORT</variable></entry>
+         <button>
+         <input file>/opt/penmode/.icons/force.png</input>
+         <width>30</width>
+          <action>/opt/penmode/.moduli/terminal/slowloris2 &</action>
+        </button>
+          </hbox> 
+          <hbox>
+          <text>
+				<label>NUM:</label>
+			</text>
+		  <entry><variable>num</variable></entry>
+		            <text>
+				<label>TIMEOUT:</label>
+			</text>
+		  <entry><variable>timeout</variable></entry>
+		 <button>
+         <input file>/opt/penmode/.icons/force.png</input>
+         <width>30</width>
+         <action>/opt/penmode/.moduli/terminal/slowloris3 &</action>
+         </button>
+         
+          </hbox>      
+		</frame>
+		</frame>		
+	 </vbox>
+
+</window>
+'
+gtkdialog --program=MAIN_DIALOG
